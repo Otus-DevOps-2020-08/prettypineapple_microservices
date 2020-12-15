@@ -1,0 +1,22 @@
+---
+- name: Deploy reddit container
+  hosts: docker_machine
+  become: yes
+
+  tasks:
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+
+  - name: Pull reddit docker image
+    docker_image:
+      name: "awesomepineapple/otus-reddit:1.0"
+      source: pull
+
+  - name: Create reddit container
+    docker_container:
+      name: "reddit"
+      image: "awesomepineapple/otus-reddit:1.0"
+      network_mode: "host"
+      exposed_ports: "9292:9292"
+      state: started

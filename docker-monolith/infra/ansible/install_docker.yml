@@ -1,0 +1,14 @@
+---
+- name: Configure host
+  hosts: all
+
+  tasks:
+  - name: Update repositories cache and install docker
+    become: true
+    apt:
+      name: [docker.io, python-setuptools, python-pip]
+      update_cache: yes
+
+  - name: enable docker
+    become: true
+    systemd: name=docker enabled=yes
