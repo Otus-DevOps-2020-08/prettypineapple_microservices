@@ -1,0 +1,8 @@
+---
+plugin: gcp_compute
+projects:
+  - super-docker-project-31337
+auth_kind: serviceaccount
+service_account_file: service-account.json
+groups:
+  docker_machine: "'docker' in name"
