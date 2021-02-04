@@ -56,6 +56,25 @@ services:
       - back_net
       - front_net
 
+  mongo-exporter:
+    image: forekshub/percona-mongodb-exporter:1.0.1
+    environment:
+      - MONGODB_URL=mongodb://post_db:27017
+    networks:
+      - back_net
+
+  blackbox-exporter:
+    image: cloudprober/cloudprober:v0.10.9
+    environment:
+      - CLOUDPROBER_HOST=0.0.0.0
+    volumes:
+      - ./cloudprober.cfg:/etc/cloudprober.cfg
+    ports:
+      - '9313:9313'
+    networks:
+      - back_net
+      - front_net
+
 volumes:
   prometheus_data:
   post_db:
