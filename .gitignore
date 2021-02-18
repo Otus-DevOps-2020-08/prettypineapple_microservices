@@ -9,3 +9,4 @@
 *.retry
 *service-account.json
 my_venv
+.env
