@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: post
+  name: comment
   labels:
     app: reddit
-    component: post
+    component: comment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: reddit
-      component: post
+      component: comment
   template:
     metadata:
-      name: post
+      name: comment
       labels:
         app: reddit
-        component: post
+        component: comment
     spec:
       containers:
-      - image: awesomepineapple/post
-        name: post
+      - image: awesomepineapple/comment
+        name: comment
         env:
-        - name: POST_DATABASE_HOST
-          value: post-db
+        - name: COMMENT_DATABASE_HOST
+          value: comment-db
